@@ -52,5 +52,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - raybellwaves
     - mwilson8
     - mxr-conda

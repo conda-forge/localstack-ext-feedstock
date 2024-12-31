@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/localstack-ext-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/localstack-ext-{{ version }}.tar.gz
   sha256: ccc18a1932a899dbb2761380c5f89ffc269fd502621b69b18a0e1afbbf3d4897
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -19,7 +19,7 @@ requirements:
   host:
     - localstack-plugin-loader >=0.1.0
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - wheel
   run:
     - deepdiff >=5.5.0
@@ -30,11 +30,13 @@ requirements:
     - localstack >=0.13.2
     - localstack-plugin-loader >=0.1.0
     - pyaes >=1.6.0
-    - python >=3.6
+    - python >={{ python_min }}
     - requests >=2.20.0
     - tabulate
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - localstack_ext
     - localstack_ext.bootstrap
